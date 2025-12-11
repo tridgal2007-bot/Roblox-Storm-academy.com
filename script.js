@@ -1,4 +1,3 @@
-
 // Navbar Logic
 const navbar = document.getElementById('navbar');
 const mobileToggle = document.getElementById('mobile-toggle');
@@ -285,7 +284,7 @@ const RARITY_THEMES = {
         bg: 'bg-orange-500',
         text: 'text-orange-400',
         border: 'border-orange-500',
-        colorHex: '#f97316',
+        colorHex: '#e2b900ff',
         display: 'LEGENDARY'
     },
     'ÉPICO': { 
@@ -324,88 +323,88 @@ const PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000
 const quirksData = [
     // LENDÁRIO (2)
     {
-        id: 'one-for-all',
-        name: 'ONE FOR ALL',
-        desc: 'Acumula poder bruto ao longo de gerações. Permite força super-humana e golpes de vento devastadores. Cuidado para não quebrar seus ossos.',
+        id: 'explosion-x',
+        name: 'EXPLOSION X',
+        desc: 'O usuário possui glândulas explosivas super-evoluídas capazes de gerar explosões colossais a partir do suor nitroglicerínico do corpo. Na forma Lendária, a quirk libera uma energia explosiva tão intensa que cria propulsão aérea ilimitada, impactos sísmicos, ondas de choque cortantes e explosões acumuladas capazes de devastar tudo ao redor.',
         rarity: 'LENDÁRIO',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-ofa'
+        vfx: 'vfx-explosion-x'
     },
     {
-        id: 'half-cold',
-        name: 'HALF-COLD HALF-HOT',
-        desc: 'Gera gelo instantâneo pelo lado direito e chamas infernais pelo lado esquerdo. O equilíbrio térmico perfeito para qualquer situação de combate.',
+        id: 'electrik-x',
+        name: 'ELECTRIK X',
+        desc: 'O usuário se transforma em uma fonte viva de energia elétrica, capaz de gerar tempestades internas e controlar eletricidade em escala massiva. Seus nervos funcionam como circuitos avançados que conduzem milhões de volts, permitindo ataques instantâneos, velocidade sobre-humana e descargas capazes de destruir tudo ao redor.',
         rarity: 'LENDÁRIO',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-todoroki'
+        vfx: 'vfx-electrik-x'
     },
-    // ÉPICO (2)
+    // ÉPICO (1)
     {
-        id: 'explosion',
-        name: 'EXPLOSION',
-        desc: 'Secreta suor semelhante à nitroglicerina das palmas das mãos e o inflama para criar explosões massivas. Quanto mais suor, maior a explosão.',
+        id: 'engine-plus',
+        name: 'ENGINE+',
+        desc: 'O usuário possui motores biológicos ultra-potentes embutidos nas pernas (ou pernas e braços, dependendo da evolução). Esses motores funcionam como turbinas vivas capazes de gerar impulsos extremos, permitindo velocidade absurda, arranques instantâneos, manobras aéreas e chutes devastadores. Na classe Épica, o usuário pode alternar entre diferentes “Modos de Propulsão”, cada um especializado em velocidade, força ou mobilidade. Os motores também podem superaquecer, ativando efeitos temporários que aumentam drasticamente o poder — mas exigem cooldown.',
         rarity: 'ÉPICO',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-bakugo'
+        vfx: 'vfx-engine-plus'
     },
+    // RARO (3)
     {
         id: 'dark-shadow',
         name: 'DARK SHADOW',
-        desc: 'Manifesta um monstro de sombra senciente do corpo. Poder ofensivo devastador no escuro, mas torna-se incontrolável.',
-        rarity: 'ÉPICO',
+        desc: 'O usuário controla uma entidade sombria viva que nasce da própria sombra. O Dark Shadow age como um parceiro de combate, podendo atacar, defender ou se mover independentemente do usuário. Em ambientes escuros, torna-se extremamente poderoso, ganhando força, velocidade e tamanho. Porém, quanto mais forte ele fica, mais difícil é controlá-lo. Em locais muito iluminados, o Dark Shadow enfraquece, ficando pequeno e menos agressivo.',
+        rarity: 'RARO',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-tokoyami'
+        vfx: 'vfx-dark-shadow'
     },
-    // RARO (2)
+    {
+        id: 'armada-animal',
+        name: 'ARMADA ANIMAL',
+        desc: 'O usuário possui a habilidade de invocar e comandar uma força inteira de criaturas animais, cada uma com funções específicas: ataque, defesa, rastreamento, suporte e distração. As criaturas são formadas por energia espiritual e surgem a partir das marcas animais que aparecem no corpo do usuário. Quanto maior a criatura ou a quantidade invocada, mais energia o usuário gasta. A Armada não controla a vontade própria — segue apenas os comandos diretos do usuário, podendo agir como um exército coordenado.',
+        rarity: 'RARO',
+        imageUrl: PLACEHOLDER_IMG,
+        vfx: 'vfx-armada-animal'
+    },
     {
         id: 'zero-gravity',
         name: 'ZERO GRAVITY',
-        desc: 'Remove a atração gravitacional de qualquer objeto tocado com as pontas dos dedos. Pode fazer inimigos flutuarem indefesos.',
+        desc: 'O usuário pode remover completamente a gravidade de qualquer objeto que tocar, fazendo-o flutuar livremente pelo ar. Quanto mais tempo o objeto fica sem gravidade, mais leve e imprevisível ele se torna. O usuário pode acumular vários objetos flutuantes ao mesmo tempo e, quando quiser, reativar a gravidade de todos eles de uma vez, causando quedas violentas, explosões de impacto e ataques inesperados. Com treino, o usuário consegue manipular a direção, velocidade e colisão dos objetos suspensos, criando combos devastadores.',
         rarity: 'RARO',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-uraraka'
-    },
-    {
-        id: 'electrification',
-        name: 'ELECTRIFICATION',
-        desc: 'Emite milhões de volts do corpo, paralisando inimigos próximos. O uso excessivo causa um curto-circuito temporário no cérebro do usuário.',
-        rarity: 'RARO',
-        imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-kaminari'
+        vfx: 'vfx-zero-gravity'
     },
     // INCOMUM (2)
     {
-        id: 'hardening',
-        name: 'HARDENING',
-        desc: 'Endurece qualquer parte do corpo para se tornar afiado como rocha. A defesa absoluta que também serve como lança.',
+        id: 'acid',
+        name: 'ACID',
+        desc: 'O usuário produz um líquido corrosivo que pode variar entre ácido fraco e extremamente tóxico. O ácido pode ser lançado como projétil, espalhado pelo chão ou usado para derreter objetos. O usuário também pode controlar a viscosidade, tornando-o mais espesso para prender inimigos ou mais fluido para aumentar o alcance. Quanto mais potente o ácido, maior o risco de o próprio usuário sofrer queimaduras se não controlar bem a quirk.',
         rarity: 'INCOMUM',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-kirishima'
+        vfx: 'vfx-acid'
     },
     {
-        id: 'tape',
-        name: 'TAPE DISPENSER',
-        desc: 'Dispara fita adesiva resistente dos cotovelos. Ótimo para prender inimigos ou se balançar pela cidade.',
+        id: 'pop-off',
+        name: 'POP OFF',
+        desc: 'O usuário possui esferas adesivas na cabeça que podem ser arrancadas e lançadas como projéteis. As esferas grudam em qualquer superfície — chão, paredes, inimigos — e o tempo de adesão varia conforme a força do usuário. Elas podem ser usadas para imobilizar, criar armadilhas, rebater ataques ou até para saltos rápidos ao grudar nelas. Quanto mais esferas o usuário arranca de uma vez, mais forte fica a dor na cabeça, podendo causar tontura.',
         rarity: 'INCOMUM',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-sero'
+        vfx: 'vfx-pop-off'
     },
     // COMUM (2)
     {
         id: 'tail',
         name: 'TAIL',
-        desc: 'Possui uma cauda forte e robusta que atua como um terceiro membro. Excelente para artes marciais e manobras ágeis.',
+        desc: 'O usuário possui uma cauda forte, flexível e totalmente controlável. A cauda pode ser usada para ataques simples, agarrar objetos ou equilibrar o corpo em movimentos rápidos. Embora não tenha grande poder ofensivo, aumenta bastante a mobilidade e permite manobras acrobáticas.',
         rarity: 'COMUM',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-ojiro'
+        vfx: 'vfx-tail'
     },
     {
-        id: 'sugar-rush',
-        name: 'SUGAR RUSH',
-        desc: 'Multiplica a força física em 5x por cada 10g de açúcar consumido. Causa sonolência extrema após o efeito passar.',
+        id: 'invisible',
+        name: 'INVISIBLE',
+        desc: 'O usuário pode tornar o próprio corpo invisível, desaparecendo completamente da visão dos inimigos. A quirk é ótima para furtividade e emboscadas, mas não remove o som dos passos nem o cheiro do usuário. Ataques realizados enquanto invisível fazem o corpo piscar rapidamente, revelando a posição por alguns segundos.',
         rarity: 'COMUM',
         imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-sato'
+        vfx: 'vfx-invisible'
     }
 ];
 
