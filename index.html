@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storm Academy | Roblox RPG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              comic: ['Bangers', 'cursive'],
+              tech: ['Rajdhani', 'sans-serif'],
+            },
+            colors: {
+              storm: {
+                accent: '#fcd34d', 
+                red: '#ef4444',
+                green: '#22c55e',
+                dark: '#0f172a',
+              }
+            },
+            animation: {
+              'eternal-zap': 'zap 2s infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            keyframes: {
+              zap: {
+                '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                '50%': { opacity: '0.8', transform: 'scale(1.1)' },
+                '52%': { opacity: '1', transform: 'scale(1.2) rotate(5deg)' },
+                '54%': { opacity: '1', transform: 'scale(1)' },
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0) skewX(-12deg)' },
+                '50%': { transform: 'translateY(-10px) skewX(-12deg)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.1",
+    "react/": "https://esm.sh/react@^19.2.1/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.559.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-storm-dark overflow-x-hidden selection:bg-storm-accent selection:text-black">
+
+    <!-- VFX Layers -->
+    <div class="moon"></div>
+    <div id="lightning-flash-overlay"></div>
+    <canvas id="rain-canvas"></canvas>
+    <canvas id="lightning-canvas"></canvas>
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 md:py-4 border-b-4 border-transparent">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
+            
+            <!-- Logo Area -->
+            <a href="index.html" class="flex items-center gap-2 group z-50 transform -skew-x-6 hover:skew-x-0 transition-transform">
+                <div class="p-1 md:p-2 bg-storm-accent border-2 border-black shadow-[2px_2px_0px_#000] md:shadow-[4px_4px_0px_#000] group-hover:bg-white transition-colors">
+                    <div class="animate-eternal-zap">
+                        <i data-lucide="zap" class="text-black w-6 h-6 md:w-8 md:h-8 fill-current"></i>
+                    </div>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="font-comic text-2xl md:text-3xl tracking-wide text-white drop-shadow-[2px_2px_0px_#000] italic group-hover:text-storm-accent transition-colors logo-text">STORM</span>
+                    <span class="font-comic text-lg md:text-xl text-storm-accent drop-shadow-[1px_1px_0px_#000] logo-sub">ACADEMY</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center gap-6">
+                <!-- Roblox Badge in Nav -->
+                <a href="https://www.roblox.com/share/g/535597375" target="_blank" class="flex items-center gap-2 bg-black/50 px-3 py-1 rounded border border-white/20 mr-4 hover:bg-white hover:text-black transition-all group nav-badge">
+                    <svg class="w-4 h-4 text-slate-400 group-hover:text-black fill-current transition-colors" viewBox="0 0 24 24"><path d="M5.647 0 1.206 17.588 18.353 24l4.441-17.588L5.647 0zm10.233 13.923-2.915-1.154.915-3.626 2.915 1.154-.915 3.626z"/></svg>
+                    <span class="text-[10px] font-tech font-bold text-slate-400 group-hover:text-black uppercase tracking-widest">Grupo Roblox</span>
+                </a>
+
+                <a href="classes.html" class="nav-link font-comic text-xl text-white hover:text-storm-accent uppercase tracking-wide hover:scale-110 transition-transform">Individualidades</a>
+                <a href="exame.html" class="nav-link font-comic text-xl text-white hover:text-storm-accent uppercase tracking-wide hover:scale-110 transition-transform">Exame</a>
+                
+                <a href="https://discord.gg/Ap2C35dW" target="_blank" class="btn-hero bg-[#5865F2] text-white px-6 py-2 border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_#fff] hover:-translate-y-1 transition-all">
+                    <div class="flex items-center gap-2 skew-x-12">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.504 13.504 0 0 0-.583 1.201 18.067 18.067 0 0 0-5.545 0 13.513 13.513 0 0 0-.585-1.202.073.073 0 0 0-.078-.037 19.776 19.776 0 0 0-4.887 1.516.073.073 0 0 0-.032.027C.533 9.046-.319 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.027 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.007-.127 9.873 9.873 0 0 0 .72-.573.077.077 0 0 1 .081-.01c3.974 1.815 8.281 1.815 12.206 0a.077.077 0 0 1 .082.01 9.88 9.88 0 0 0 .72.573.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.074.074 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z"/></svg>
+                        <span class="font-bold font-tech">DISCORD</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-toggle" class="lg:hidden text-white bg-black border-2 border-storm-accent p-2 transform -skew-x-12 z-50">
+                <i data-lucide="menu" class="w-8 h-8 skew-x-12"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-storm-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-6 opacity-0 pointer-events-none transition-opacity duration-300 p-6 mobile-menu-bg">
+            <a href="https://www.roblox.com/share/g/535597375" target="_blank" class="flex flex-col items-center">
+                <svg class="w-12 h-12 text-white fill-current mb-2 hover:scale-110 transition-transform" viewBox="0 0 24 24"><path d="M5.647 0 1.206 17.588 18.353 24l4.441-17.588L5.647 0zm10.233 13.923-2.915-1.154.915-3.626 2.915 1.154-.915 3.626z"/></svg>
+                <span class="text-white font-tech uppercase tracking-widest">Grupo Roblox</span>
+            </a>
+            <div class="w-full h-1 bg-white/10 my-2"></div>
+            <a href="classes.html" class="mobile-link font-comic text-4xl text-white hover:text-storm-accent nav-link-mobile">Individualidades</a>
+            <a href="exame.html" class="mobile-link font-comic text-4xl text-white hover:text-storm-accent nav-link-mobile">Exame</a>
+            <div class="w-full h-1 bg-white/10 my-2"></div>
+            <a href="https://discord.gg/Ap2C35dW" class="font-comic text-4xl text-[#5865F2]">Discord</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
+        
+        <!-- NIGHT SCENE BACKGROUND -->
+        <div id="night-sky" class="absolute inset-0 z-0">
+             <!-- Moon is fixed in body -->
+        </div>
+
+        
+        <div class="relative z-30 text-center px-4 pt-16 flex flex-col items-center w-full">
+            
+            <!-- Roblox Platform Badge -->
+            <div class="roblox-badge animate-float flex items-center gap-3 px-4 py-2 md:px-6 rounded-lg transform -skew-x-12 mb-6 md:mb-8 bg-black border-2 border-white/20 theme-badge">
+                <div class="w-6 h-6 md:w-8 md:h-8 bg-white flex items-center justify-center skew-x-12 badge-icon-bg">
+                   <svg class="w-4 h-4 md:w-5 md:h-5 text-black fill-current badge-icon" viewBox="0 0 24 24"><path d="M5.647 0 1.206 17.588 18.353 24l4.441-17.588L5.647 0zm10.233 13.923-2.915-1.154.915-3.626 2.915 1.154-.915 3.626z"/></svg>
+                </div>
+                <div class="text-left skew-x-12">
+                    <p class="text-[8px] md:text-[10px] text-slate-400 font-bold uppercase tracking-widest leading-none theme-text-muted">EM DESENVOLVIMENTO</p>
+                    <p class="text-base md:text-xl text-white font-comic tracking-wide leading-none theme-text-main">EM BREVE</p>
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="font-comic text-6xl md:text-9xl text-white leading-[0.85] tracking-tight italic transform -skew-x-6 mb-2 drop-shadow-[5px_5px_0px_#000] title-main">
+                STORM
+            </h1>
+            <h1 class="font-comic text-6xl md:text-9xl text-storm-accent leading-[0.85] tracking-tight italic transform -skew-x-6 mb-6 drop-shadow-[5px_5px_0px_#000] title-sub">
+                ACADEMY
+            </h1>
+
+            <p class="font-tech text-white bg-black/80 px-4 md:px-6 py-2 transform skew-x-6 md:skew-x-12 border-l-4 border-storm-accent text-lg md:text-2xl max-w-3xl mx-auto mb-8 shadow-lg w-full md:w-auto description-box">
+                <span class="block transform -skew-x-6 md:-skew-x-12">
+                    Torne-se o maior herói (ou vilão) no maior RPG de mundo aberto do Roblox.
+                    <br/><span class="text-storm-accent font-bold highlight-text">SUPERE SEUS LIMITES!</span>
+                </span>
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full max-w-2xl px-4">
+                
+                <button class="btn-wishlist w-full md:w-auto btn-hero bg-storm-accent text-black text-xl md:text-2xl px-8 py-3 md:px-12 md:py-4 border-2 border-black shadow-[4px_4px_0px_#000] hover:bg-white hover:text-storm-red hover:shadow-[6px_6px_0px_#fff] transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center justify-center gap-3 skew-x-12">
+                        <i data-lucide="bookmark" class="w-6 h-6 fill-current"></i> 
+                        <span class="relative font-comic uppercase">Lista de Desejos</span>
+                    </div>
+                </button>
+                
+                <a href="https://discord.gg/Ap2C35dW" target="_blank" class="w-full md:w-auto btn-hero bg-[#5865F2] text-white text-xl md:text-2xl px-8 py-3 md:px-12 md:py-4 border-2 border-black shadow-[4px_4px_0px_#000] hover:bg-white hover:text-[#5865F2] hover:shadow-[6px_6px_0px_#fff] transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center justify-center gap-3 skew-x-12">
+                         <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.504 13.504 0 0 0-.583 1.201 18.067 18.067 0 0 0-5.545 0 13.513 13.513 0 0 0-.585-1.202.073.073 0 0 0-.078-.037 19.776 19.776 0 0 0-4.887 1.516.073.073 0 0 0-.032.027C.533 9.046-.319 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.027 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.007-.127 9.873 9.873 0 0 0 .72-.573.077.077 0 0 1 .081-.01c3.974 1.815 8.281 1.815 12.206 0a.077.077 0 0 1 .082.01 9.88 9.88 0 0 0 .72.573.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.074.074 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z"/></svg>
+                         <span class="relative font-comic uppercase">Entrar no Discord</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Rating Badge (Free/Livre) -->
+            <div class="absolute bottom-4 right-4 md:bottom-10 md:right-10 comic-box px-3 py-1 md:px-4 md:py-2 border-l-4 md:border-l-8 border-green-500 flex items-center gap-2 md:gap-4 bg-black/80 scale-75 md:scale-100 origin-bottom-right theme-rating-box">
+                <div class="text-right">
+                    <p class="text-green-500 font-comic text-xl">CLASSIFICAÇÃO</p>
+                    <p class="text-white font-tech text-xs uppercase theme-text-main">Livre para Todos</p>
+                </div>
+                <div class="bg-green-500 text-white font-black font-comic text-4xl w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border-2 border-black rounded shadow-[0_0_15px_#22c55e]">
+                    L
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-black border-t-4 border-storm-accent pt-10 md:pt-20 pb-10 relative overflow-hidden z-20 footer-theme">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="font-comic text-3xl md:text-4xl text-white mb-4 footer-title">DESENVOLVIDO PARA <span class="text-storm-accent footer-highlight">ROBLOX</span></h2>
+            <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 mb-8">
+                 <a href="https://www.roblox.com/share/g/535597375" target="_blank" class="text-white hover:text-storm-accent font-comic text-xl footer-link">GRUPO OFICIAL</a>
+                 <a href="https://discord.gg/Ap2C35dW" target="_blank" class="text-white hover:text-[#5865F2] font-comic text-xl footer-link">DISCORD</a>
+            </div>
+            <p class="font-tech text-slate-500 text-sm mb-8 px-4">&copy; 2025 STORM ACADEMY. TODOS OS DIREITOS RESERVADOS. NÃO AFILIADO OFICIALMENTE À ROBLOX CORPORATION.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

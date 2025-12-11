@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storm Academy | Comunidade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              comic: ['Bangers', 'cursive'],
+              tech: ['Rajdhani', 'sans-serif'],
+            },
+            colors: {
+              storm: {
+                accent: '#fcd34d', 
+                red: '#ef4444',
+                green: '#22c55e',
+                dark: '#0f172a',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-storm-dark text-slate-50 overflow-x-hidden selection:bg-storm-accent selection:text-black">
+
+    <div class="moon"></div>
+    <div id="lightning-flash-overlay"></div>
+    <canvas id="rain-canvas"></canvas>
+    <canvas id="lightning-canvas"></canvas>
+    
+    <div class="cloud-container">
+        <div class="fog-anim"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 md:py-4 border-b-4 border-transparent">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 flex justify-between items-center">
+            
+            <!-- Logo Area -->
+            <a href="index.html" class="flex items-center gap-2 group z-50 transform -skew-x-6 hover:skew-x-0 transition-transform">
+                <div class="p-1 md:p-2 bg-storm-accent border-2 border-black shadow-[2px_2px_0px_#000] md:shadow-[4px_4px_0px_#000] group-hover:bg-white transition-colors">
+                    <div class="animate-eternal-zap">
+                        <i data-lucide="zap" class="text-black w-6 h-6 md:w-8 md:h-8 fill-current"></i>
+                    </div>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="font-comic text-2xl md:text-3xl tracking-wide text-white drop-shadow-[2px_2px_0px_#000] italic group-hover:text-storm-accent transition-colors logo-text">STORM</span>
+                    <span class="font-comic text-lg md:text-xl text-storm-accent drop-shadow-[1px_1px_0px_#000] logo-sub">ACADEMY</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center gap-6">
+                <!-- Roblox Badge in Nav -->
+                <a href="https://www.roblox.com/share/g/535597375" target="_blank" class="flex items-center gap-2 bg-black/50 px-3 py-1 rounded border border-white/20 mr-4 hover:bg-white hover:text-black transition-all group nav-badge">
+                    <svg class="w-4 h-4 text-slate-400 group-hover:text-black fill-current transition-colors" viewBox="0 0 24 24"><path d="M5.647 0 1.206 17.588 18.353 24l4.441-17.588L5.647 0zm10.233 13.923-2.915-1.154.915-3.626 2.915 1.154-.915 3.626z"/></svg>
+                    <span class="text-[10px] font-tech font-bold text-slate-400 group-hover:text-black uppercase tracking-widest">Grupo Roblox</span>
+                </a>
+
+                <a href="classes.html" class="nav-link font-comic text-xl text-white hover:text-storm-accent uppercase tracking-wide hover:scale-110 transition-transform">Individualidades</a>
+                <a href="exame.html" class="nav-link font-comic text-xl text-white hover:text-storm-accent uppercase tracking-wide hover:scale-110 transition-transform text-storm-accent drop-shadow-[2px_2px_0px_rgba(0,0,0,1)]">Exame</a>
+                
+                <a href="https://discord.gg/Ap2C35dW" target="_blank" class="btn-hero bg-[#5865F2] text-white px-6 py-2 border-2 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_#fff] hover:-translate-y-1 transition-all">
+                    <div class="flex items-center gap-2 skew-x-12">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.504 13.504 0 0 0-.583 1.201 18.067 18.067 0 0 0-5.545 0 13.513 13.513 0 0 0-.585-1.202.073.073 0 0 0-.078-.037 19.776 19.776 0 0 0-4.887 1.516.073.073 0 0 0-.032.027C.533 9.046-.319 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.027 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.007-.127 9.873 9.873 0 0 0 .72-.573.077.077 0 0 1 .081-.01c3.974 1.815 8.281 1.815 12.206 0a.077.077 0 0 1 .082.01 9.88 9.88 0 0 0 .72.573.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.074.074 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z"/></svg>
+                        <span class="font-bold font-tech">DISCORD</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-toggle" class="lg:hidden text-white bg-black border-2 border-storm-accent p-2 transform -skew-x-12 z-50">
+                <i data-lucide="menu" class="w-8 h-8 skew-x-12"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed inset-0 bg-storm-dark/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-6 opacity-0 pointer-events-none transition-opacity duration-300 p-6 mobile-menu-bg">
+            <a href="https://www.roblox.com/share/g/535597375" target="_blank" class="flex flex-col items-center">
+                <svg class="w-16 h-16 fill-white mb-2" viewBox="0 0 24 24"><path d="M5.647 0 1.206 17.588 18.353 24l4.441-17.588L5.647 0zm10.233 13.923-2.915-1.154.915-3.626 2.915 1.154-.915 3.626z"/></svg>
+                <span class="text-white font-tech uppercase tracking-widest">Grupo Roblox</span>
+            </a>
+            <div class="w-full h-1 bg-white/10 my-2"></div>
+            <a href="classes.html" class="mobile-link font-comic text-4xl text-white hover:text-storm-accent nav-link-mobile">Individualidades</a>
+            <a href="exame.html" class="mobile-link font-comic text-4xl text-white hover:text-storm-accent nav-link-mobile">Exame</a>
+            <div class="w-full h-1 bg-white/10 my-2"></div>
+            <a href="https://discord.gg/Ap2C35dW" class="font-comic text-4xl text-[#5865F2]">Discord</a>
+        </div>
+    </nav>
+
+    <section class="min-h-screen relative overflow-hidden flex items-center justify-center py-20">
+        <!-- Comic Dots BG handled in CSS -->
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-6 text-center reveal-on-scroll">
+            <div class="mb-6 md:mb-8 inline-block relative transform -rotate-6">
+                <div class="bg-storm-accent p-4 md:p-6 border-4 border-black shadow-[4px_4px_0px_#000] md:shadow-[8px_8px_0px_#000]">
+                    <i data-lucide="mail" class="w-12 h-12 md:w-16 md:h-16 text-black relative z-10"></i>
+                </div>
+            </div>
+            
+            <h2 class="font-comic text-5xl md:text-8xl text-white mb-6 uppercase tracking-tight drop-shadow-[5px_5px_0px_#000]">
+                EXAME DE <span class="text-storm-accent italic">ADMISSÃO</span>
+            </h2>
+            
+            <p class="bg-black/80 text-white border-2 border-white p-4 md:p-6 rounded text-base md:text-xl mb-8 md:mb-12 max-w-2xl mx-auto font-tech leading-relaxed transform skew-x-[-2deg] md:skew-x-[-5deg] shadow-[8px_8px_0px_rgba(252,211,77,0.2)]">
+                Cadastre-se para receber novidades sobre o lançamento no Roblox. Entre no Discord para garantir seu cargo de "Estudante".
+            </p>
+
+            <form id="newsletter-form" class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto w-full">
+                <div class="relative flex-1 transform -skew-x-6 md:-skew-x-12">
+                    <input type="email" required placeholder="SEU E-MAIL AQUI" class="w-full h-14 md:h-16 bg-white border-4 border-black px-6 text-black placeholder-slate-500 focus:outline-none focus:border-storm-red transition-all font-comic text-xl md:text-2xl skew-x-6 md:skew-x-12 shadow-[5px_5px_0px_rgba(0,0,0,0.5)]">
+                </div>
+                <button type="submit" class="h-14 md:h-16 px-8 bg-storm-red text-white font-comic text-xl md:text-2xl uppercase tracking-widest border-4 border-black hover:bg-white hover:text-black hover:shadow-[5px_5px_0px_#000] transition-all transform -skew-x-6 md:-skew-x-12 shadow-[5px_5px_0px_rgba(0,0,0,0.5)]">
+                    <span class="skew-x-6 md:skew-x-12 inline-block">ENVIAR</span>
+                </button>
+            </form>
+            
+            <div class="mt-8 md:mt-12 flex items-center justify-center gap-8">
+                 <a href="https://discord.gg/Ap2C35dW" target="_blank" class="group flex flex-col items-center gap-2">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-[#5865F2] border-4 border-black shadow-[4px_4px_0px_#000] flex items-center justify-center transform group-hover:-translate-y-2 transition-transform">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.504 13.504 0 0 0-.583 1.201 18.067 18.067 0 0 0-5.545 0 13.513 13.513 0 0 0-.585-1.202.073.073 0 0 0-.078-.037 19.776 19.776 0 0 0-4.887 1.516.073.073 0 0 0-.032.027C.533 9.046-.319 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.027 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.007-.127 9.873 9.873 0 0 0 .72-.573.077.077 0 0 1 .081-.01c3.974 1.815 8.281 1.815 12.206 0a.077.077 0 0 1 .082.01 9.88 9.88 0 0 0 .72.573.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.074.074 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z"/></svg>
+                    </div>
+                    <span class="font-comic text-white text-xl">Discord</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t-4 border-storm-accent pt-10 md:pt-20 pb-10 relative overflow-hidden z-20 footer-theme">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="font-comic text-3xl md:text-4xl text-white mb-4 footer-title">DESENVOLVIDO PARA <span class="text-storm-accent footer-highlight">ROBLOX</span></h2>
+            <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-6 mb-8">
+                 <a href="https://www.roblox.com/share/g/535597375" target="_blank" class="text-white hover:text-storm-accent font-comic text-xl footer-link">GRUPO OFICIAL</a>
+                 <a href="https://discord.gg/Ap2C35dW" target="_blank" class="text-white hover:text-[#5865F2] font-comic text-xl footer-link">DISCORD</a>
+            </div>
+            <p class="font-tech text-slate-500 text-sm mb-8 px-4">&copy; 2025 STORM ACADEMY. TODOS OS DIREITOS RESERVADOS. NÃO AFILIADO OFICIALMENTE À ROBLOX CORPORATION.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
