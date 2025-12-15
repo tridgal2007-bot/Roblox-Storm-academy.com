@@ -346,6 +346,13 @@ const quirksData = [
         rarity: 'ÉPICO',
         imageUrl: PLACEHOLDER_IMG,
         vfx: 'vfx-engine-plus'
+    },    {
+        id: 'zero-gravity',
+        name: 'ZERO GRAVITY',
+        desc: 'O usuário pode remover completamente a gravidade de qualquer objeto que tocar, fazendo-o flutuar livremente pelo ar. Quanto mais tempo o objeto fica sem gravidade, mais leve e imprevisível ele se torna. O usuário pode acumular vários objetos flutuantes ao mesmo tempo e, quando quiser, reativar a gravidade de todos eles de uma vez, causando quedas violentas, explosões de impacto e ataques inesperados. Com treino, o usuário consegue manipular a direção, velocidade e colisão dos objetos suspensos, criando combos devastadores.',
+        rarity: 'ÉPICO',
+        imageUrl: PLACEHOLDER_IMG,
+        vfx: 'vfx-zero-gravity'
     },
     // RARO (3)
     {
@@ -364,14 +371,7 @@ const quirksData = [
         imageUrl: PLACEHOLDER_IMG,
         vfx: 'vfx-armada-animal'
     },
-    {
-        id: 'zero-gravity',
-        name: 'ZERO GRAVITY',
-        desc: 'O usuário pode remover completamente a gravidade de qualquer objeto que tocar, fazendo-o flutuar livremente pelo ar. Quanto mais tempo o objeto fica sem gravidade, mais leve e imprevisível ele se torna. O usuário pode acumular vários objetos flutuantes ao mesmo tempo e, quando quiser, reativar a gravidade de todos eles de uma vez, causando quedas violentas, explosões de impacto e ataques inesperados. Com treino, o usuário consegue manipular a direção, velocidade e colisão dos objetos suspensos, criando combos devastadores.',
-        rarity: 'RARO',
-        imageUrl: PLACEHOLDER_IMG,
-        vfx: 'vfx-zero-gravity'
-    },
+  
     // INCOMUM (2)
     {
         id: 'acid',
